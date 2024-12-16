@@ -33,7 +33,7 @@ export default function NewCardForm() {
 	return (
 		<form onSubmit={handleFormSubmit} className="form-container">
 			<div className="card-title-field form-input-container">
-				<label htmlFor="title">Название</label>
+				<label htmlFor="title">Препод</label>
 				<input
 					type="text"
 					id="title"
@@ -44,7 +44,7 @@ export default function NewCardForm() {
 			</div>
 
 			<div className="card-desc-field form-input-container">
-				<label htmlFor="description">Описание</label>
+				<label htmlFor="description">Цитата</label>
 				<textarea
 					id="description"
 					className="custom-textarea"
@@ -53,14 +53,14 @@ export default function NewCardForm() {
 			</div>
 
 			<div className="card-status-select form-input-container">
-				<label htmlFor="status">Статус</label>
+				<label htmlFor="status">Показания кринжометра</label>
 				<select
 					className="custom-select"
 					name="status"
 					onChange={event => setStatus(event.target?.value === "true")}
 				>
-					<option value="true">Сделано</option>
-					<option value="false">Не cделано</option>
+					<option value="true">Ну такое...</option>
+					<option value="false">Лютый кринж</option>
 				</select>
 			</div>
 			<button className="custom-btn" disabled={hasError} type="submit">

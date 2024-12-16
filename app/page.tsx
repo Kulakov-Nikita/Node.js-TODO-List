@@ -4,7 +4,7 @@ import Title from "../components/PageTitle/PageTitle"
 import background from "/img/background.jpg";
 
 export const metadata: Metadata = {
-	title: "TODO List",
+	title: "Подслушка ВолГТУ",
 	description: "VSTU - Web - Lab 4",
 }
 
