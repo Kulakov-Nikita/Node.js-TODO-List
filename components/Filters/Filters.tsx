@@ -1,30 +1,48 @@
-import "./Filters.css"
+import React, { useState } from "react";
+import "./Filters.css";
 
 export default function Filters({
-	onFiltersSubmit,
+  onFiltersSubmit,
 }: {
-	onFiltersSubmit: (filter: string) => void
+  onFiltersSubmit: (filter: string) => void;
 }) {
-	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-		event.preventDefault()
-		const formData = new FormData(event.currentTarget)
-		const status = formData.get("status") as string
-		onFiltersSubmit(status)
-	}
+  // Локальное состояние для хранения текущего активного фильтра
+  const [activeFilter, setActiveFilter] = useState("all");
 
-	return (
-		<form className="filters-form" action="GET" onSubmit={handleSubmit}>
-			<div className="card-status-select form-input-container">
-				<label htmlFor="status">Статус</label>
-				<select className="custom-select" name="status">
-					<option value="all">Все</option>
-					<option value="true">Сделано</option>
-					<option value="false">Не cделано</option>
-				</select>
-			</div>
-			<button className="small-custom-btn" type="submit">
-				Применить
-			</button>
-		</form>
-	)
+  // Функция обработки изменения значения
+  function handleButtonClick(status: string) {
+    setActiveFilter(status); // Обновляем активный фильтр
+    onFiltersSubmit(status); // Применяем фильтр
+  }
+
+  return (
+    <form className="filters-form" action="GET">
+      <div className="card-status-select form-input-container">
+        <label htmlFor="status">Кринжометр</label>
+        <div className="button-group">
+          <button
+            type="button"
+            className={`filter-button ${activeFilter === "all" ? "active" : ""}`}
+            onClick={() => handleButtonClick("all")}
+          >
+            Все
+          </button>
+          <button
+            type="button"
+            className={`filter-button ${activeFilter === "true" ? "active" : ""}`}
+            onClick={() => handleButtonClick("true")}
+          >
+            Ну такое...
+          </button>
+          <button
+            type="button"
+            className={`filter-button ${activeFilter === "false" ? "active" : ""}`}
+            onClick={() => handleButtonClick("false")}
+          >
+            Лютый Кринж
+          </button>
+        </div>
+      </div>
+    </form>
+  );
 }
