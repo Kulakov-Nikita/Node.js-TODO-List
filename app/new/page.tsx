@@ -4,7 +4,7 @@ import { Metadata } from "next"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-	title: "New TODO Card",
+	title: "Пишем донос",
 	description: "VSTU - Web - Lab 4",
 }
 
@@ -12,9 +12,9 @@ export default function NewCard() {
 	return (
 		<>
 			<Link href="/">
-				<button className="small-custom-btn">Вернуться</button>
+				<button className="small-custom-btn">Отказаться</button>
 			</Link>
-			<PageTitle title="Создание новой карточки" />
+			<PageTitle title="Пишем новый донос" />
 			<NewCardForm />
 		</>
 	)
