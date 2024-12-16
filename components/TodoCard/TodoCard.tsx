@@ -41,7 +41,6 @@ export default function TodoCard({
           Придраться к орфографии
         </button>
 
-        {/* Кнопка удаления */}
         <button
           className="btn-icon remove-btn"
           onClick={() => removeCardFunc(id)}

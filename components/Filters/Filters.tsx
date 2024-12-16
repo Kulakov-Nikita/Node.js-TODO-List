@@ -6,13 +6,12 @@ export default function Filters({
 }: {
   onFiltersSubmit: (filter: string) => void;
 }) {
-  // Локальное состояние для хранения текущего активного фильтра
+
   const [activeFilter, setActiveFilter] = useState("all");
 
-  // Функция обработки изменения значения
   function handleButtonClick(status: string) {
-    setActiveFilter(status); // Обновляем активный фильтр
-    onFiltersSubmit(status); // Применяем фильтр
+    setActiveFilter(status);
+    onFiltersSubmit(status);
   }
 
   return (
