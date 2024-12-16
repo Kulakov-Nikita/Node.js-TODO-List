@@ -4,14 +4,14 @@ import Title from "../components/PageTitle/PageTitle"
 import background from "/img/background.jpg";
 
 export const metadata: Metadata = {
-	title: "Подслушка ВолГТУ",
+	title: "Домашние работы",
 	description: "VSTU - Web - Lab 4",
 }
 
 export default function Home() {
 	return (
 		<div>
-			<Title title="Подслушка ВолгГТУ - Цитаты Преподов"></Title>
+			<Title title="Домашние работы"></Title>
 			<TodoList />
 		</div>
 	)

@@ -20,15 +20,15 @@ export default function TodoCard({
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
         <div className="card-desc">
-          <strong>Цитата: </strong>
+          <strong>Описание: </strong>
           <span className="card-desc-text">{description}</span>
         </div>
         <div className="card-status">
-          <strong>Показания кринжометра: </strong>
+          <strong>Готовность: </strong>
           {isCompleted ? (
-            <span className="status-done">Ну такое...</span>
+            <span className="status-done">Готово</span>
           ) : (
-            <span className="status-undone">Лютый кринж</span>
+            <span className="status-undone">Не готово</span>
           )}
         </div>
       </div>
@@ -38,7 +38,7 @@ export default function TodoCard({
           className="btn-icon edit-btn"
           onClick={() => router.push("/edit/" + id)}
         >
-          Придраться к орфографии
+          Редактировать
         </button>
 
         {/* Кнопка удаления */}
@@ -46,7 +46,7 @@ export default function TodoCard({
           className="btn-icon remove-btn"
           onClick={() => removeCardFunc(id)}
         >
-          Стереть с лица земли
+          Удалить
         </button>
       </div>
     </div>

@@ -60,7 +60,7 @@ export default function CardEditForm({ cardId }: { cardId: Number }) {
 			) : isCardAvailable ? (
 				<form onSubmit={handleFormSubmit} className="form-container">
 					<div className="card-title-field form-input-container">
-						<label htmlFor="title">Препод</label>
+						<label htmlFor="title">Название</label>
 						<input
 							type="text"
 							id="title"
@@ -72,7 +72,7 @@ export default function CardEditForm({ cardId }: { cardId: Number }) {
 					</div>
 
 					<div className="card-desc-field form-input-container">
-						<label htmlFor="description">Цитата</label>
+						<label htmlFor="description">Описание</label>
 						<textarea
 							id="description"
 							className="custom-textarea"
@@ -82,15 +82,15 @@ export default function CardEditForm({ cardId }: { cardId: Number }) {
 					</div>
 
 					<div className="card-status-select form-input-container">
-						<label htmlFor="status">Показания кринжометра</label>
+						<label htmlFor="status">Готовность</label>
 						<select
 							className="custom-select"
 							name="status"
 							value={status.toString()}
 							onChange={event => setStatus(event.target?.value === "true")}
 						>
-							<option value="true">Ну такое...</option>
-							<option value="false">Лютый кринж</option>
+							<option value="true">Готово.</option>
+							<option value="false">Не готово</option>
 						</select>
 					</div>
 					<button className="custom-btn" disabled={hasError} type="submit">
