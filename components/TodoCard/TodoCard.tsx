@@ -1,9 +1,12 @@
 "use client"
 
-import { CardData } from "@/components/TodoCard/CardData"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import "./TodoCard.css"
+import { CardData } from "@/components/TodoCard/CardData";
+import { useRouter } from "next/navigation";
+import "./TodoCard.css";
+
+interface TodoCardProps extends CardData {
+  removeCardFunc: (id: number) => void;
+}
 
 export default function TodoCard({
   id,
@@ -25,8 +28,8 @@ export default function TodoCard({
         </div>
         <div className="card-status">
           <strong>Показания кринжометра: </strong>
-          {isCompleted ? (
-            <span className="status-done">Ну такое...</span>
+          {completed ? (
+            <span className="status-done">Ну такое..</span>
           ) : (
             <span className="status-undone">Лютый кринж</span>
           )}
@@ -44,7 +47,7 @@ export default function TodoCard({
         {/* Кнопка удаления */}
         <button
           className="btn-icon remove-btn"
-          onClick={() => removeCardFunc(id)}
+          onClick={() => removeCardFunc(Number(id))}
         >
           Стереть с лица земли
         </button>
