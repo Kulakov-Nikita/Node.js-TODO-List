@@ -27,7 +27,7 @@ export default function TodoList() {
 		loadCards()
 	}, [])
 
-	function onRemove(id: Number) {
+	function onRemove(id: number) {
 		removeCard(id)
 		setCards(prevCards => prevCards.filter(card => card.id !== id))
 	}

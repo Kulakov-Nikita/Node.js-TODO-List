@@ -1,84 +1,95 @@
-import { CardData } from "@/components/TodoCard/CardData"
-import fs from "fs"
-import { NextRequest, NextResponse } from "next/server"
-import path from "path"
+import { CardData } from "@/components/TodoCard/CardData";
+import { promises as fs } from "fs";
+import { NextRequest, NextResponse } from "next/server";
+import path from "path";
 
-const dataFilePath = path.join(process.cwd(), "data", "cards.json")
+const dataFilePath = path.join(process.cwd(), "data", "cards.json");
 
 export async function GET(
-	req: NextRequest,
-	{ params }: { params: { id: Number } }
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
-	const { id } = await params
+  const { id } = await context.params; // Ожидание промиса
 
-	try {
-		const data = fs.readFileSync(dataFilePath, "utf8")
+  const numericId = Number(id);
 
-		if (id) {
-			const card = JSON.parse(data).find(
-				(card: CardData) => card.id === Number(id)
-			)
+  try {
+    const data = await fs.readFile(dataFilePath, "utf8");
 
-			if (!card) {
-				return NextResponse.json({ error: "Card not found" }, { status: 404 })
-			}
+    if (numericId) {
+      const card = JSON.parse(data).find(
+        (card: CardData) => card.id === numericId
+      );
 
-			return NextResponse.json(card, { status: 200 })
-		}
-		return NextResponse.json({ error: "Wrong id" }, { status: 404 })
-	} catch (error) {
-		console.error(error)
-		return NextResponse.json({ error: "Failed to load cards" }, { status: 500 })
-	}
+      if (!card) {
+        return NextResponse.json({ error: "Card not found" }, { status: 404 });
+      }
+
+      return NextResponse.json(card, { status: 200 });
+    }
+    return NextResponse.json({ error: "Wrong id" }, { status: 404 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: "Failed to load cards" },
+      { status: 500 }
+    );
+  }
 }
 
 export async function DELETE(
-	req: NextRequest,
-	{ params }: { params: { id: number } }
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
-	const { id } = await params
+  const { id } = await context.params;
 
-	try {
-		const data = JSON.parse(fs.readFileSync(dataFilePath, "utf8"))
-		const updatedCards = data.filter((card: CardData) => card.id !== Number(id))
-		fs.writeFileSync(dataFilePath, JSON.stringify(updatedCards, null, 2))
-		return NextResponse.json({ message: "Card deleted" }, { status: 200 })
-	} catch (error) {
-		console.error(error)
-		return NextResponse.json(
-			{ error: "Failed to delete card" },
-			{ status: 500 }
-		)
-	}
+  const numericId = Number(id);
+
+  try {
+    const data = JSON.parse(await fs.readFile(dataFilePath, "utf8"));
+    const updatedCards = data.filter(
+      (card: CardData) => card.id !== numericId
+    );
+    await fs.writeFile(dataFilePath, JSON.stringify(updatedCards, null, 2));
+    return NextResponse.json({ message: "Card deleted" }, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: "Failed to delete card" },
+      { status: 500 }
+    );
+  }
 }
 
 export async function PUT(
-	req: NextRequest,
-	{ params }: { params: { id: Number } }
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
-	const { id } = await params
+  const { id } = await context.params;
 
-	try {
-		const data = fs.readFileSync(dataFilePath, "utf8")
-		const cards = JSON.parse(data)
+  const numericId = Number(id);
 
-		const updatedData = await req.json()
+  try {
+    const data = await fs.readFile(dataFilePath, "utf8");
+    const cards = JSON.parse(data);
 
-		const index = cards.findIndex((card: CardData) => card.id === Number(id))
+    const updatedData = await req.json();
 
-		if (index === -1) {
-			return NextResponse.json({ error: "Card not found" }, { status: 404 })
-		}
+    const index = cards.findIndex((card: CardData) => card.id === numericId);
 
-		cards[index] = { ...cards[index], ...updatedData }
-		fs.writeFileSync(dataFilePath, JSON.stringify(cards, null, 2))
+    if (index === -1) {
+      return NextResponse.json({ error: "Card not found" }, { status: 404 });
+    }
 
-		return NextResponse.json({ message: "Card updated" }, { status: 200 })
-	} catch (error) {
-		console.error(error)
-		return NextResponse.json(
-			{ error: "Failed to update card" },
-			{ status: 500 }
-		)
-	}
+    cards[index] = { ...cards[index], ...updatedData };
+    await fs.writeFile(dataFilePath, JSON.stringify(cards, null, 2));
+
+    return NextResponse.json({ message: "Card updated" }, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: "Failed to update card" },
+      { status: 500 }
+    );
+  }
 }

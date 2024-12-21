@@ -1,9 +1,12 @@
-"use client"
+"use client";
 
-import { CardData } from "@/components/TodoCard/CardData"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import "./TodoCard.css"
+import { CardData } from "@/components/TodoCard/CardData";
+import { useRouter } from "next/navigation";
+import "./TodoCard.css";
+
+interface TodoCardProps extends CardData {
+  removeCardFunc: (id: number) => void; // Типизация для removeCardFunc
+}
 
 export default function TodoCard({
   id,
@@ -11,9 +14,8 @@ export default function TodoCard({
   description,
   completed,
   removeCardFunc,
-}: CardData & { removeCardFunc: (id: Number) => void }) {
-  const [isCompleted, setIsCompleted] = useState(completed)
-  const router = useRouter()
+}: TodoCardProps) {
+  const router = useRouter();
 
   return (
     <div className="todo-card">
@@ -25,7 +27,7 @@ export default function TodoCard({
         </div>
         <div className="card-status">
           <strong>Готовность: </strong>
-          {isCompleted ? (
+          {completed ? (
             <span className="status-done">Готово</span>
           ) : (
             <span className="status-undone">Не готово</span>
@@ -44,11 +46,11 @@ export default function TodoCard({
         {/* Кнопка удаления */}
         <button
           className="btn-icon remove-btn"
-          onClick={() => removeCardFunc(id)}
+          onClick={() => removeCardFunc(Number(id))} // Преобразуем id в примитив number
         >
           Удалить
         </button>
       </div>
     </div>
-  )
+  );
 }
