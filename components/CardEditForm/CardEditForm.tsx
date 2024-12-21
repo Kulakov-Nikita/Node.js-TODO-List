@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import React, { useEffect, useState } from "react"
 import "./CardEditForm.css"
 
-export default function CardEditForm({ cardId }: { cardId: Number }) {
+export default function CardEditForm({ cardId }: { cardId: number }) {
 	const [hasError, setHasError] = useState<boolean>(false)
 	const [title, setTitle] = useState<string>("")
 	const [description, setDescription] = useState<string>("")

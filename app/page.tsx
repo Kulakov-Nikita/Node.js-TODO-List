@@ -1,7 +1,6 @@
 import TodoList from "@/components/TodoList/TodoList"
 import { Metadata } from "next"
 import Title from "../components/PageTitle/PageTitle"
-import background from "/img/background.jpg";
 
 export const metadata: Metadata = {
 	title: "Подслушка ВолГТУ",

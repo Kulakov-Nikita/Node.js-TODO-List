@@ -24,15 +24,14 @@ export default function TodoList() {
     }
   }
 
-  useEffect(() => {
-    loadCards();
-  }, []);
+	useEffect(() => {
+		loadCards()
+	}, [])
 
-  // Удаление карточки
-  function onRemove(id: number) {
-    removeCard(id);
-    setCards((prevCards) => prevCards.filter((card) => card.id !== id));
-  }
+	function onRemove(id: number) {
+		removeCard(id)
+		setCards(prevCards => prevCards.filter(card => card.id !== id))
+	}
 
   // Загрузка карточек с фильтром
   async function loadCardsWithFilter(filter: string) {

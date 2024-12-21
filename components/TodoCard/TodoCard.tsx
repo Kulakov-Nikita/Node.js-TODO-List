@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
 import { CardData } from "@/components/TodoCard/CardData";
 import { useRouter } from "next/navigation";
 import "./TodoCard.css";
 
 interface TodoCardProps extends CardData {
-  removeCardFunc: (id: number) => void;
+  removeCardFunc: (id: number) => void; // Типизация для removeCardFunc
 }
 
 export default function TodoCard({
@@ -14,22 +14,21 @@ export default function TodoCard({
   description,
   completed,
   removeCardFunc,
-}: CardData & { removeCardFunc: (id: Number) => void }) {
-  const [isCompleted, setIsCompleted] = useState(completed)
-  const router = useRouter()
+}: TodoCardProps) {
+  const router = useRouter();
 
   return (
     <div className="todo-card">
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
         <div className="card-desc">
-          <strong>Цитата: </strong>
+          <strong>Описание: </strong>
           <span className="card-desc-text">{description}</span>
         </div>
         <div className="card-status">
           <strong>Показания кринжометра: </strong>
           {completed ? (
-            <span className="status-done">Ну такое..</span>
+            <span className="status-done">Ну такое...</span>
           ) : (
             <span className="status-undone">Лютый кринж</span>
           )}
@@ -41,17 +40,17 @@ export default function TodoCard({
           className="btn-icon edit-btn"
           onClick={() => router.push("/edit/" + id)}
         >
-          Придраться к орфографии
+          Редактировать
         </button>
 
         {/* Кнопка удаления */}
         <button
           className="btn-icon remove-btn"
-          onClick={() => removeCardFunc(Number(id))}
+          onClick={() => removeCardFunc(Number(id))} // Преобразуем id в примитив number
         >
-          Стереть с лица земли
+          Удалить
         </button>
       </div>
     </div>
-  )
+  );
 }

@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 		const newCard = await request.json()
 
 		const data = fs.readFileSync(dataFilePath, "utf8")
-		let cards = JSON.parse(data)
+		const cards = JSON.parse(data)
 
 		cards.push(newCard)
 

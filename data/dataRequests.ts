@@ -18,7 +18,7 @@ export async function getCardsWithFilter(filter: string) {
 	}
 }
 
-export async function getCardById(id: Number) {
+export async function getCardById(id: number) {
 	const response = await fetch(`/api/cards/${id}`, { method: "GET" })
 
 	if (!response.ok) {
@@ -48,7 +48,7 @@ export async function editCard(newCard: CardData): Promise<void> {
 	}
 }
 
-export async function removeCard(id: Number) {
+export async function removeCard(id: number) {
 	const response = await fetch(`/api/cards/${id}`, { method: "DELETE" })
 
 	if (!response.ok) {
