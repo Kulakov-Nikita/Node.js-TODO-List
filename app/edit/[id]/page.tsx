@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Props } from "./Props"
 
 export const metadata: Metadata = {
-	title: "Редактирование Д/з",
+	title: "Смена показаний",
 	description: "VSTU - Web - Lab 4",
 }
 
@@ -15,9 +15,9 @@ export default async function EditCard({ params }: Props) {
 	return (
 		<>
 			<Link href="/">
-				<button className="small-custom-btn">Назад</button>
+				<button className="small-custom-btn">Оставить как есть</button>
 			</Link>
-			<PageTitle title="Редактирование Д/з" />
+			<PageTitle title="Меняем показания" />
 			<CardEditForm cardId={id} />
 		</>
 	)

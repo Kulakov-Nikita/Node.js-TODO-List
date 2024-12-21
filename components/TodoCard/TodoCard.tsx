@@ -26,11 +26,11 @@ export default function TodoCard({
           <span className="card-desc-text">{description}</span>
         </div>
         <div className="card-status">
-          <strong>Готовность: </strong>
+          <strong>Показания кринжометра: </strong>
           {completed ? (
-            <span className="status-done">Готово</span>
+            <span className="status-done">Ну такое...</span>
           ) : (
-            <span className="status-undone">Не готово</span>
+            <span className="status-undone">Лютый кринж</span>
           )}
         </div>
       </div>

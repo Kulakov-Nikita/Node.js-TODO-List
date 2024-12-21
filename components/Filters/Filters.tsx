@@ -18,7 +18,7 @@ export default function Filters({
   return (
     <form className="filters-form" action="GET">
       <div className="card-status-select form-input-container">
-        <label htmlFor="status">Готовность</label>
+        <label htmlFor="status">Кринжометр</label>
         <div className="button-group">
           <button
             type="button"
@@ -32,14 +32,14 @@ export default function Filters({
             className={`filter-button ${activeFilter === "true" ? "active" : ""}`}
             onClick={() => handleButtonClick("true")}
           >
-            Готово
+            Ну такое...
           </button>
           <button
             type="button"
             className={`filter-button ${activeFilter === "false" ? "active" : ""}`}
             onClick={() => handleButtonClick("false")}
           >
-            Не готово
+            Лютый Кринж
           </button>
         </div>
       </div>
