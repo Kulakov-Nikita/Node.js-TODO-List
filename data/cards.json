@@ -1,20 +1,14 @@
 [
   {
     "id": 1,
-    "title": "Математика",
-    "description": "ывазшлфыаэзфылвазлфва",
-    "completed": true
+    "title": "Радченко Ф. С.",
+    "description": "С: Что я упустил?\nП: Упускают в штаны!",
+    "completed": false
   },
   {
     "id": 2,
-    "title": "Физика",
-    "description": "фываываыфы",
-    "completed": false
-  },
-  {
-    "id": 3,
-    "title": "Пргораммирование",
-    "description": "фывапфыапывапыв",
-    "completed": false
+    "title": "В. В. Климов",
+    "description": "С: А с нами как?\nП: Как с неграми! На гражданина вы ещё не заработали!",
+    "completed": true
   }
 ]
